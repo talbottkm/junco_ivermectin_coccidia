@@ -1,5 +1,5 @@
 # Impact of Ivermectin treatment and host sex 
- # on coccidia oocyst shedding in dark-eyed juncos; KMT July 2025
+ # on coccidia oocyst shedding in dark-eyed juncos; KMT 2025
 
 # Prepare -----------------------------------------------------------------
 # clean off workspace
@@ -131,6 +131,9 @@ pdlong.m <- pdlong %>% filter(sex=="0")
 long_msub_t <- long_msub%>% filter(treatment=="1")
 long_msub_m <- long_msub %>% filter(sex=="0")
 
+fdata <- baseline %>% filter(sex=="1")
+fdatapd <- data2 %>% filter(group=="ftreat") %>% filter(sample=="postdose2")
+fdata <- merge(fdata, fdatapd, by="band")
 
 
 # a function for visualizing data and checking distributions
@@ -193,8 +196,7 @@ ggplot(pdlong, aes(x =change, y = dcount, col=treatment)) +
   labs(shape="Sex", colour="Treatment")+
   scale_color_manual(values=treat.colors, labels=c("Control", "Ivermectin")) +
   scale_shape(labels=c("Male", "Female"), solid=FALSE)+
-  labs(       x="Timeframe",
-              y="Change in oocysts per g feces")
+  labs(x="Timeframe", y="Change in oocysts per g feces")
 
 # Baseline-pd2 oocyst count changes --------------------
 
@@ -211,6 +213,11 @@ wilcox.test(pd2_males$dcount~pd2_males$treatment) #W = 13, p-value = 0.03301
 # by group
 kruskal_test(dcount~group, data=pd2)
 dunnTest(dcount~group, data=pd2, method="bh")
+
+# compare female baseline to female pd2
+wilcox.test(fdata$count.x, fdata$count.y, paired=TRUE) #p=1
+  #count.x is baseline, count.y is pd2
+
 
 # Baseline-pd1 mass change -----------------------------
 
