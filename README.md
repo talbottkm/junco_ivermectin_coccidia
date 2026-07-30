@@ -1,29 +1,31 @@
-# junco_ivermectin_coccidia
-Code and data for project investigating sex differences in the impact of ivermectin on coccidia shedding in dark-eyed juncos
-
 ## ArielREU_kmt20250918.R
 Code for analyses and visuals
 
-## master_juncococcidia.xlsx
-Data file for analysis; two tabs labeled 'long' and 'longchange'
+## coccidia_longdata.csv
+Data file for analysis in long form
 
-Column headers for 'longchange'  
+## coccidia_widedata.csv
+Data file for analysis in wide form
+
+## Column headers for longdata  
 band: individual ID  
 sex: 1=female, 0=male  
 treatment: 1=ivermectin, 0=control  
-group: sex + treatment  
-dcount: change in oocyst count   
-change: timeframe of change (note "pd" means "post-dose")  
-malaria: treatment (if any) during an experimental project that occurred previously  
-mtreat: malaria treatment; 1=Plasmodium inoculation, 0=no Plasmodium inoculation   
-treat2: 'group' + 'mtreat'   
+count: coccidia oocysts per gram feces   
+mass: junco mass (grams)
+plasmodium_exp: role in Plasmodium experiment prior to Ivermectin study (none = bird was not involved; control = bird inoculated with uninfected blood; exp = bird was inoculated with Plasmodium infected blood)  
+plasmodium_treat: whether bird received a Plasmodium inoculation (0 = no, 1 = yes)
 
-Column headers for 'long'  
+## Column headers for widedata  
 band: individual ID  
 sex: 1=female, 0=male  
 treatment: 1=ivermectin, 0=control  
-group: sex + treatment  
-mass: junco mass in grams  
-count_addone: mean number of oocysts plus a value of one  
-sample: point during experiment when sample was collected (note 'base2' is baseline)  
-count: raw mean oocyst count  
+count: coccidia oocysts per gram feces   
+mass: junco mass (grams)
+plasmodium_exp: role in Plasmodium experiment prior to Ivermectin study (none = bird was not involved; control = bird inoculated with uninfected blood; exp = bird was inoculated with Plasmodium infected blood)  
+plasmodium_treat: whether bird received a Plasmodium inoculation (0 = no, 1 = yes)
+mass_base: junco mass at baseline (grams)
+mass_postdose: junco mass following final ivermectin dose (grams)
+count_base: coccidia oocyst count per grams feces at baseline
+count_postdose: coccidia oocyst count per grams feces following final ivermectin dose (grams)
+dcount: change in coccidia oocyst count from baseline to postdose (dcount = count_postdose - count_base)
